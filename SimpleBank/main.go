@@ -33,7 +33,5 @@ func main() {
 	err = server.Start(config.ServerAddress)
 	if err != nil {
 		log.Fatal("Cannot start server", err)
-	} else {
-		fmt.Println("API Server is UP!")
 	}
 }

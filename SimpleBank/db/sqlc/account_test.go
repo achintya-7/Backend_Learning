@@ -12,8 +12,11 @@ import (
 )
 
 func createRandomAccount(t *testing.T) Account {
+
+	user := createRandomUser(t)
+
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
@@ -83,8 +86,8 @@ func TestUpdateAccounts(t *testing.T) {
 	account1 := createRandomAccount(t)
 
 	arg := UpdateAccountParams{
-		ID: account1.ID,
-		Balance: account1.Balance-1000,
+		ID:      account1.ID,
+		Balance: account1.Balance - 1000,
 	}
 
 	account, err := testQueries.UpdateAccount(context.Background(), arg)
@@ -96,4 +99,3 @@ func TestUpdateAccounts(t *testing.T) {
 	require.Equal(t, account2.Balance, arg.Balance)
 
 }
-
