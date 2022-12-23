@@ -5,7 +5,6 @@ go 1.19
 require (
 	github.com/aead/chacha20poly1305 v0.0.0-20170617001512-233f39982aeb
 	github.com/gin-gonic/gin v1.8.1
-	github.com/golang/protobuf v1.5.2
 	github.com/lib/pq v1.10.7
 	github.com/o1egl/paseto v1.0.0
 	github.com/stretchr/testify v1.8.1
