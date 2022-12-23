@@ -1,6 +1,7 @@
 import 'package:banking_app/feature/auth/binding/auth_bindings.dart';
 import 'package:banking_app/feature/auth/view/login_page.dart';
 import 'package:banking_app/feature/auth/view/register_page.dart';
+import 'package:banking_app/feature/bank_home/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,12 +25,12 @@ class MyApp extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
           ),
         ),
-        
       ),
       initialRoute: "/login",
       getPages: [
         GetPage(name: "/login", page: () => LoginPage(), binding: AuthBindings()),
         GetPage(name: "/register", page: () => const RegisterPage()),
+        GetPage(name: "/home", page: () => const HomePage())
       ],
     );
   }

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -26,12 +26,12 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
-                    controller: _emailController,
+                    controller: _usernameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      hintText: "Email",
+                      hintText: "Username",
                     ),
                   ),
                 ),
@@ -50,14 +50,23 @@ class LoginPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      _loginController.updateEmail(_emailController.text);
+                      if (_usernameController.text.isEmpty ||
+                          _passwordController.text.isEmpty) {
+                        _loginController.updateStatus("Please fill all fields");
+                        return;
+                      }
+
+                      _loginController.loginRequest(
+                          _usernameController.text, _passwordController.text);
                     },
                     child: const Text("Login")),
 
-                Text(
-                  _loginController.email.value,
-                  style: const TextStyle(color: Colors.black),
-                ),
+                _loginController.loading.value
+                    ? const CircularProgressIndicator()
+                    : Text(
+                        _loginController.status.value,
+                        style: const TextStyle(color: Colors.black),
+                      ),
 
                 // * SignUp Button
                 const SizedBox(height: 20),
